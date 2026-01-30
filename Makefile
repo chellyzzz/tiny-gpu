@@ -6,8 +6,8 @@ export PYGPI_PYTHON_BIN=$(shell cocotb-config --python-bin)
 test_%:
 	make compile
 	iverilog -o build/sim.vvp -s gpu -g2012 build/gpu.v
-	COCOTB_TEST_MODULES=test.test_$* vvp -M $$(cocotb-config --lib-dir) -m libcocotbvpi_icarus build/sim.vvp
-
+	COCOTB_TEST_MODULES=test.test_$* vvp -M $$(cocotb-config --lib-dir) -m libcocotbvpi_icarus build/sim.vvp +dumpfile=build/$*.vcd +dumpvars
+	
 compile:
 	make compile_alu
 	sv2v -I src/* -w build/gpu.v

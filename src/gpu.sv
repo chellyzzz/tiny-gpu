@@ -214,4 +214,12 @@ module gpu #(
             );
         end
     endgenerate
+
+    // Waveform dump for simulation
+    initial begin
+        if ($test$plusargs("dumpvars")) begin
+            $dumpfile("build/gpu.vcd");
+            $dumpvars(0, gpu);
+        end
+    end
 endmodule
